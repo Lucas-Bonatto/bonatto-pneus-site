@@ -24,3 +24,11 @@ test("keeps the required security headers", async () => {
     assert.equal(source.includes(header), true, `${header} must be configured`);
   }
 });
+
+test("configures Cloudflare static assets and real 404 responses", async () => {
+  const source = await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8");
+  const config = JSON.parse(source);
+
+  assert.equal(config.assets.directory, "./dist");
+  assert.equal(config.assets.not_found_handling, "404-page");
+});

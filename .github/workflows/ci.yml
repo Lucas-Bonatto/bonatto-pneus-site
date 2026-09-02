@@ -42,3 +42,6 @@ jobs:
 
       - name: Executar testes
         run: npm test
+
+      - name: Validar pacote do Cloudflare
+        run: npx wrangler deploy --dry-run

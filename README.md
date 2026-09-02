@@ -8,7 +8,7 @@ experiência em pneus, rodas e serviços automotivos.
 - React 19
 - Vite
 - CSS responsivo com animações e suporte a `prefers-reduced-motion`
-- Cloudflare Pages com cabeçalhos de segurança
+- Cloudflare Workers Static Assets com cabeçalhos de segurança
 
 ## Executar localmente
 
@@ -29,6 +29,7 @@ segurança de conteúdo e testes em cada atualização da branch principal.
 
 ## Publicação
 
-O build de produção é gerado em `dist/` e pode ser publicado diretamente no
-Cloudflare Pages. O arquivo `public/_headers` mantém as políticas de segurança
-aplicadas às páginas e aos arquivos estáticos.
+O build de produção é gerado em `dist/` e publicado como arquivos estáticos no
+Cloudflare Workers. O arquivo `public/_headers` mantém as políticas de segurança
+aplicadas às páginas e aos arquivos estáticos, enquanto `wrangler.jsonc`
+configura a página 404 com o status HTTP correto.
