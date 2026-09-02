@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.npm-cache/
+.wrangler/
+.dev.vars
+
+# Segredos e configurações locais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Arquivos locais e temporários
+*.log
+.DS_Store
+Thumbs.db
