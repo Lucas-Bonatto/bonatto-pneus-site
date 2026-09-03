@@ -598,6 +598,7 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
 
 .scene-sticky {
   position: sticky;
+  isolation: isolate;
   top: 0;
   display: grid;
   align-items: center;
