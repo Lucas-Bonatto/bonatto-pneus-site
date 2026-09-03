@@ -1292,6 +1292,10 @@ button:focus-visible {
     transform: none;
   }
 
+  #oleo .scene-image {
+    object-position: 78% center;
+  }
+
   .scene-left .scene-shade,
   .scene-right .scene-shade {
     background:
