@@ -211,6 +211,13 @@ test("keeps benefit-led alignment copy and accepted card brands", async () => {
   }
 });
 
+test("keeps the tire carousel hint close on mobile", async () => {
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.equal(styles.includes("#pneus .journey-navigation"), true);
+  assert.equal(styles.includes("top: calc(100svh - 4.8rem)"), true);
+});
+
 test("keeps downloaded SVG logos free of executable markup", async () => {
   const assetDirectories = [
     new URL("../public/images/brands/", import.meta.url),

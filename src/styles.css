@@ -1894,6 +1894,11 @@ button:focus-visible {
     justify-content: flex-end;
   }
 
+  #pneus .journey-navigation {
+    top: calc(100svh - 4.8rem);
+    bottom: auto;
+  }
+
   .journey-hint {
     margin-right: auto;
   }
