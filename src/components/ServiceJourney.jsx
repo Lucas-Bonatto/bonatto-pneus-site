@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { WhatsAppLink } from "./SiteChrome";
 
-function ServiceIntro({ service, isActive }) {
+function ServiceIntro({ service, isActive, mobileNavigation }) {
   return (
     <article
       className={`journey-slide service-intro-slide scene-${service.align} ${isActive ? "is-active" : ""}`}
@@ -42,6 +42,7 @@ function ServiceIntro({ service, isActive }) {
 
         <WhatsAppLink className="scene-link">Orçar este serviço</WhatsAppLink>
       </div>
+      {mobileNavigation}
     </article>
   );
 }
@@ -73,7 +74,7 @@ function BrandCard({ item, index }) {
   );
 }
 
-function BrandsSlide({ slide, isActive }) {
+function BrandsSlide({ slide, isActive, mobileNavigation }) {
   return (
     <article
       className={`journey-slide showcase-slide ${isActive ? "is-active" : ""}`}
@@ -96,11 +97,12 @@ function BrandsSlide({ slide, isActive }) {
           <p className="showcase-note">{slide.note}</p>
         </div>
       </div>
+      {mobileNavigation}
     </article>
   );
 }
 
-function GallerySlide({ slide, isActive }) {
+function GallerySlide({ slide, isActive, mobileNavigation }) {
   return (
     <article
       className={`journey-slide showcase-slide gallery-slide ${isActive ? "is-active" : ""}`}
@@ -135,15 +137,46 @@ function GallerySlide({ slide, isActive }) {
           <p className="showcase-note">{slide.note}</p>
         </div>
       </div>
+      {mobileNavigation}
     </article>
   );
 }
 
-function ShowcaseSlide({ slide, isActive }) {
+function ShowcaseSlide({ slide, isActive, mobileNavigation }) {
   return slide.type === "gallery" ? (
-    <GallerySlide slide={slide} isActive={isActive} />
+    <GallerySlide slide={slide} isActive={isActive} mobileNavigation={mobileNavigation} />
   ) : (
-    <BrandsSlide slide={slide} isActive={isActive} />
+    <BrandsSlide slide={slide} isActive={isActive} mobileNavigation={mobileNavigation} />
+  );
+}
+
+function JourneyNavigation({ serviceId, activeSlide, totalSlides, goToSlide, variant }) {
+  return (
+    <div
+      className={`journey-navigation journey-navigation-${variant}`}
+      aria-label={`Navegar pela seção ${serviceId}`}
+    >
+      <span className="journey-counter" aria-live="polite">
+        {String(activeSlide + 1).padStart(2, "0")} / {String(totalSlides).padStart(2, "0")}
+      </span>
+      <span className="journey-hint">Arraste para o lado</span>
+      <button
+        type="button"
+        onClick={() => goToSlide(activeSlide - 1)}
+        disabled={activeSlide === 0}
+        aria-label="Página lateral anterior"
+      >
+        <FaChevronLeft aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        onClick={() => goToSlide(activeSlide + 1)}
+        disabled={activeSlide === totalSlides - 1}
+        aria-label="Próxima página lateral"
+      >
+        <FaChevronRight aria-hidden="true" />
+      </button>
+    </div>
   );
 }
 
@@ -190,6 +223,19 @@ export function ServiceJourney({ service }) {
     }
   };
 
+  const renderNavigation = (variant) => (
+    <JourneyNavigation
+      serviceId={service.id}
+      activeSlide={activeSlide}
+      totalSlides={totalSlides}
+      goToSlide={goToSlide}
+      variant={variant}
+    />
+  );
+
+  const renderTireMobileNavigation = () =>
+    service.id === "pneus" && totalSlides > 1 ? renderNavigation("mobile") : null;
+
   return (
     <section
       className="service-journey"
@@ -207,11 +253,16 @@ export function ServiceJourney({ service }) {
         aria-label={`${service.title.replace("\n", " ")}: ${totalSlides} ${totalSlides === 1 ? "página lateral" : "páginas laterais"}`}
       >
         <div className="journey-track">
-          <ServiceIntro service={service} isActive={activeSlide === 0} />
+          <ServiceIntro
+            service={service}
+            isActive={activeSlide === 0}
+            mobileNavigation={renderTireMobileNavigation()}
+          />
           {slides.map((slide, index) => (
             <ShowcaseSlide
               slide={slide}
               isActive={activeSlide === index + 1}
+              mobileNavigation={renderTireMobileNavigation()}
               key={slide.id}
             />
           ))}
@@ -219,28 +270,7 @@ export function ServiceJourney({ service }) {
       </div>
 
       {totalSlides > 1 ? (
-        <div className="journey-navigation" aria-label={`Navegar pela seção ${service.id}`}>
-          <span className="journey-counter" aria-live="polite">
-            {String(activeSlide + 1).padStart(2, "0")} / {String(totalSlides).padStart(2, "0")}
-          </span>
-          <span className="journey-hint">Arraste para o lado</span>
-          <button
-            type="button"
-            onClick={() => goToSlide(activeSlide - 1)}
-            disabled={activeSlide === 0}
-            aria-label="Página lateral anterior"
-          >
-            <FaChevronLeft aria-hidden="true" />
-          </button>
-          <button
-            type="button"
-            onClick={() => goToSlide(activeSlide + 1)}
-            disabled={activeSlide === totalSlides - 1}
-            aria-label="Próxima página lateral"
-          >
-            <FaChevronRight aria-hidden="true" />
-          </button>
-        </div>
+        renderNavigation("global")
       ) : null}
     </section>
   );

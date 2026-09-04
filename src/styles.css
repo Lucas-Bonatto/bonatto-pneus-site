@@ -1094,6 +1094,10 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
   cursor: not-allowed;
 }
 
+.journey-navigation-mobile {
+  display: none;
+}
+
 /* Valores e pagamentos */
 
 .pricing {
@@ -1894,9 +1898,19 @@ button:focus-visible {
     justify-content: flex-end;
   }
 
-  #pneus .journey-navigation {
-    top: calc(100svh - 4.8rem);
+  #pneus > .journey-navigation-global {
+    display: none;
+  }
+
+  #pneus .journey-navigation-mobile {
+    position: relative;
+    top: auto;
+    right: auto;
     bottom: auto;
+    left: auto;
+    display: flex;
+    width: 100%;
+    margin-top: 1.4rem;
   }
 
   .journey-hint {
