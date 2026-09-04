@@ -32,9 +32,9 @@ export const SERVICES = [
         id: "pneus-marcas",
         type: "brands",
         eyebrow: "Marcas que trabalhamos",
-        title: "Opções para cada medida e caminho.",
+        title: "A marca certa para o seu caminho.",
         description:
-          "Trabalhamos com marcas nacionais e importadas para diferentes veículos, terrenos e faixas de investimento.",
+          "Cidade, estrada ou aventura: reunimos opções consagradas e importadas para você dirigir com confiança e escolher de acordo com o seu carro e o seu orçamento.",
         note:
           "Consulte disponibilidade por medida e outras marcas importadas que também trabalhamos.",
         brands: [
@@ -63,9 +63,9 @@ export const SERVICES = [
         id: "pneus-modelos",
         type: "gallery",
         eyebrow: "Alguns modelos",
-        title: "Tecnologia para diferentes usos.",
+        title: "O pneu certo transforma a direção.",
         description:
-          "Uma amostra de linhas para passeio, performance e uso diário. A indicação final considera veículo, medida e rotina.",
+          "Mais aderência, estabilidade e confiança a cada quilômetro. Encontre o modelo que combina com o seu carro e com a forma como você dirige.",
         note: "Imagens ilustrativas. Consulte modelos, medidas e disponibilidade.",
         items: [
           {
@@ -112,9 +112,9 @@ export const SERVICES = [
         id: "rodas-marcas",
         type: "brands",
         eyebrow: "Marcas e aplicações",
-        title: "O encaixe certo para o seu projeto.",
+        title: "Estilo que respeita cada detalhe.",
         description:
-          "Selecionamos rodas considerando aro, tala, furação, offset, acabamento e aplicação correta no veículo.",
+          "A roda certa valoriza o carro sem abrir mão da aplicação correta. Comparamos aro, tala, furação, offset e acabamento para unir presença e segurança.",
         note: "Consulte modelos, acabamentos e disponibilidade para o seu veículo.",
         brands: [
           brand("Zunky"),
@@ -128,9 +128,9 @@ export const SERVICES = [
         id: "rodas-modelos",
         type: "gallery",
         eyebrow: "Alguns modelos",
-        title: "Do clássico ao esportivo.",
+        title: "Mude as rodas. Mude a presença.",
         description:
-          "Veja algumas referências de desenho. Confirmamos compatibilidade e opções de acabamento antes da montagem.",
+          "Do visual clássico ao esportivo, cada desenho cria uma nova identidade para o carro. Escolha o estilo e nós confirmamos a compatibilidade.",
         note: "Modelos Zunky usados como referência visual. Estoque sujeito a consulta.",
         items: [
           {
@@ -171,9 +171,9 @@ export const SERVICES = [
         id: "suspensao-marcas",
         type: "brands",
         eyebrow: "Suspensão e freios",
-        title: "Componentes de marcas reconhecidas.",
+        title: "Confiança para frear, contornar e seguir.",
         description:
-          "Trabalhamos com linhas para estabilidade, conforto e frenagem, sempre de acordo com a aplicação indicada para o veículo.",
+          "Suspensão e freios em dia trazem firmeza, conforto e resposta ao volante. Trabalhamos com marcas reconhecidas para cuidar do que mantém o carro sob controle.",
         note: "A disponibilidade e a marca indicada dependem do diagnóstico e da aplicação.",
         brands: [
           brand("Monroe", "monroe"),
@@ -204,9 +204,9 @@ export const SERVICES = [
         id: "oleo-marcas",
         type: "brands",
         eyebrow: "Óleo e lubrificação",
-        title: "Marcas reconhecidas. Especificação correta.",
+        title: "Proteção certa para o coração do carro.",
         description:
-          "Selecionamos o óleo pela viscosidade, norma e homologação previstas para o motor — não apenas pela marca.",
+          "Óleo não é tudo igual. A escolha correta ajuda a reduzir o desgaste, preservar o desempenho e prolongar a vida do motor — sempre conforme a especificação do fabricante.",
         note: "Consulte a linha indicada para o seu veículo e a disponibilidade em loja.",
         brands: [
           brand("Mobil", "mobil"),

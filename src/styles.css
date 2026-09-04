@@ -832,6 +832,26 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
   mask-image: linear-gradient(90deg, transparent, #000 24%, #000 76%, transparent);
 }
 
+.showcase-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 34%,
+    rgba(72, 162, 255, 0.1) 48%,
+    rgba(231, 138, 47, 0.08) 52%,
+    transparent 66%
+  );
+  transform: translateX(-115%);
+}
+
+.showcase-slide.is-active::after {
+  animation: showcase-sweep 820ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .showcase-layout {
   position: relative;
   z-index: 1;
@@ -840,6 +860,10 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
   align-items: center;
   gap: clamp(2.5rem, 6vw, 7rem);
   width: 100%;
+}
+
+.showcase-slide.is-active .showcase-layout {
+  animation: showcase-enter 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .showcase-heading > p:not(.eyebrow) {
@@ -886,6 +910,12 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
   border: 1px solid rgba(255, 255, 255, 0.48);
   border-radius: 0.35rem;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.showcase-slide.is-active .brand-card,
+.showcase-slide.is-active .product-card {
+  animation: showcase-card-enter 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(90ms + var(--item-index) * 34ms);
 }
 
 .brand-art {
@@ -1482,6 +1512,40 @@ button:focus-visible {
     opacity: 1;
     transform: scaleX(1);
     transform-origin: left;
+  }
+}
+
+@keyframes showcase-enter {
+  from {
+    opacity: 0.25;
+    transform: translate3d(2.5rem, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes showcase-card-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.4rem, 0) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes showcase-sweep {
+  from {
+    transform: translateX(-115%);
+  }
+
+  to {
+    transform: translateX(115%);
   }
 }
 

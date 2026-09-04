@@ -41,6 +41,8 @@ const REQUIRED_CATALOG_TEXT = [
   "Roadcruza",
   "Delinte",
   "Novamaxx",
+  "O pneu certo transforma a direção.",
+  "Proteção certa para o coração do carro.",
   "Zunky",
   "Volcano",
   "Olimpo",
@@ -80,6 +82,9 @@ test("keeps the catalog content and product images available locally", async () 
   for (const label of REQUIRED_CATALOG_TEXT) {
     assert.equal(source.includes(label), true, `${label} must stay in the catalog`);
   }
+
+  assert.equal(source.includes("Uma amostra de linhas para passeio"), false);
+  assert.equal(source.includes("Selecionamos o óleo pela viscosidade"), false);
 
   assert.doesNotMatch(source, /image:\s*["']https?:/i);
 

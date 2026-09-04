@@ -2,9 +2,11 @@ import { useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { WhatsAppLink } from "./SiteChrome";
 
-function ServiceIntro({ service }) {
+function ServiceIntro({ service, isActive }) {
   return (
-    <article className={`journey-slide service-intro-slide scene-${service.align}`}>
+    <article
+      className={`journey-slide service-intro-slide scene-${service.align} ${isActive ? "is-active" : ""}`}
+    >
       <img
         className="scene-image"
         src={service.image}
@@ -53,9 +55,9 @@ function ShowcaseHeader({ slide }) {
   );
 }
 
-function BrandCard({ item }) {
+function BrandCard({ item, index }) {
   return (
-    <li className="brand-card">
+    <li className="brand-card" style={{ "--item-index": index }}>
       <span className="brand-art" aria-hidden="true">
         {item.logo ? (
           <img src={item.logo} alt="" loading="lazy" decoding="async" />
@@ -68,9 +70,12 @@ function BrandCard({ item }) {
   );
 }
 
-function BrandsSlide({ slide }) {
+function BrandsSlide({ slide, isActive }) {
   return (
-    <article className="journey-slide showcase-slide" aria-labelledby={`${slide.id}-title`}>
+    <article
+      className={`journey-slide showcase-slide ${isActive ? "is-active" : ""}`}
+      aria-labelledby={`${slide.id}-title`}
+    >
       <div className="showcase-layout">
         <div>
           <ShowcaseHeader slide={slide} />
@@ -81,8 +86,8 @@ function BrandsSlide({ slide }) {
 
         <div className="showcase-content" data-reveal>
           <ul className="brand-grid" aria-label="Marcas disponíveis">
-            {slide.brands.map((item) => (
-              <BrandCard item={item} key={item.name} />
+            {slide.brands.map((item, index) => (
+              <BrandCard item={item} index={index} key={item.name} />
             ))}
           </ul>
           <p className="showcase-note">{slide.note}</p>
@@ -92,9 +97,12 @@ function BrandsSlide({ slide }) {
   );
 }
 
-function GallerySlide({ slide }) {
+function GallerySlide({ slide, isActive }) {
   return (
-    <article className="journey-slide showcase-slide gallery-slide" aria-labelledby={`${slide.id}-title`}>
+    <article
+      className={`journey-slide showcase-slide gallery-slide ${isActive ? "is-active" : ""}`}
+      aria-labelledby={`${slide.id}-title`}
+    >
       <div className="showcase-layout">
         <div>
           <ShowcaseHeader slide={slide} />
@@ -105,8 +113,12 @@ function GallerySlide({ slide }) {
 
         <div className="showcase-content" data-reveal>
           <ul className={`product-grid product-grid-${slide.items.length}`}>
-            {slide.items.map((item) => (
-              <li className="product-card" key={`${item.brand}-${item.name}`}>
+            {slide.items.map((item, index) => (
+              <li
+                className="product-card"
+                key={`${item.brand}-${item.name}`}
+                style={{ "--item-index": index }}
+              >
                 <div className="product-image-wrap">
                   <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
                 </div>
@@ -124,11 +136,11 @@ function GallerySlide({ slide }) {
   );
 }
 
-function ShowcaseSlide({ slide }) {
+function ShowcaseSlide({ slide, isActive }) {
   return slide.type === "gallery" ? (
-    <GallerySlide slide={slide} />
+    <GallerySlide slide={slide} isActive={isActive} />
   ) : (
-    <BrandsSlide slide={slide} />
+    <BrandsSlide slide={slide} isActive={isActive} />
   );
 }
 
@@ -192,9 +204,13 @@ export function ServiceJourney({ service }) {
         aria-label={`${service.title.replace("\n", " ")}: ${totalSlides} ${totalSlides === 1 ? "página lateral" : "páginas laterais"}`}
       >
         <div className="journey-track">
-          <ServiceIntro service={service} />
-          {slides.map((slide) => (
-            <ShowcaseSlide slide={slide} key={slide.id} />
+          <ServiceIntro service={service} isActive={activeSlide === 0} />
+          {slides.map((slide, index) => (
+            <ShowcaseSlide
+              slide={slide}
+              isActive={activeSlide === index + 1}
+              key={slide.id}
+            />
           ))}
         </div>
       </div>
