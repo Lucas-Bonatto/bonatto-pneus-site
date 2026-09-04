@@ -10,6 +10,13 @@ import {
 import { SERVICE_LABELS, SERVICE_PRICES } from "../data/siteContent";
 import { WhatsAppLink } from "./SiteChrome";
 
+const CARD_BRANDS = [
+  { name: "Mastercard", logo: "/images/payments/mastercard.svg" },
+  { name: "Visa", logo: "/images/payments/visa.svg" },
+  { name: "Elo", logo: "/images/payments/elo.svg" },
+  { name: "Banrisul", logo: "/images/payments/banrisul.svg" },
+];
+
 function ServiceMarquee() {
   return (
     <div className="service-marquee" aria-label={`Serviços: ${SERVICE_LABELS.join(", ")}`}>
@@ -109,9 +116,11 @@ export function PricingAndPayments() {
     <section className="pricing" id="balanceamento" data-section>
       <div className="pricing-heading" data-reveal>
         <p className="eyebrow">Balanceamento e geometria</p>
-        <h2>Seu carro alinhado. Seu caminho mais seguro.</h2>
+        <h2>Sinta o carro firme. Faça os pneus renderem mais.</h2>
         <p>
-          Valores claros para veículos leves, SUVs, camionetes, vans e utilitários.
+          Balanceamento e geometria para reduzir vibrações, corrigir a direção e
+          evitar desgaste irregular — com preços definidos para cada categoria de
+          veículo.
         </p>
       </div>
 
@@ -152,6 +161,18 @@ export function PricingAndPayments() {
                 Parcelamento em até 18x. Entre em contato para consultar taxas e
                 condições disponíveis.
               </p>
+              <ul className="payment-brands" aria-label="Bandeiras aceitas">
+                {CARD_BRANDS.map((brand) => (
+                  <li key={brand.name}>
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
           </article>
           <article>

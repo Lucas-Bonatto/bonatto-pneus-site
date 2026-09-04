@@ -57,7 +57,10 @@ function ShowcaseHeader({ slide }) {
 
 function BrandCard({ item, index }) {
   return (
-    <li className="brand-card" style={{ "--item-index": index }}>
+    <li
+      className={`brand-card ${item.surface === "dark" ? "brand-card-dark" : ""}`}
+      style={{ "--item-index": index }}
+    >
       <span className="brand-art" aria-hidden="true">
         {item.logo ? (
           <img src={item.logo} alt="" loading="lazy" decoding="async" />

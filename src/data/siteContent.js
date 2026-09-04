@@ -10,9 +10,10 @@ export const NAVIGATION = [
   { label: "Contato", href: "#contato", section: "contato" },
 ];
 
-const brand = (name, slug = null, extension = "svg") => ({
+const brand = (name, slug = null, extension = "svg", surface = "light") => ({
   name,
   logo: slug ? `/images/brands/${slug}.${extension}` : null,
+  surface,
 });
 
 export const SERVICES = [
@@ -319,6 +320,25 @@ export const SERVICES = [
     image: "/images/sections/window-film.webp",
     alt: "Profissional aplicando película em vidro automotivo",
     align: "left",
+    slides: [
+      {
+        id: "peliculas-marcas",
+        type: "brands",
+        eyebrow: "Marcas do mercado nacional",
+        title: "Conforto que você sente. Qualidade que você enxerga.",
+        description:
+          "Do controle solar à proteção dos vidros, trabalhamos com linhas presentes no mercado brasileiro para combinar visibilidade, privacidade e acabamento de alto padrão.",
+        note:
+          "Consulte marca, tonalidade, tecnologia e disponibilidade. A indicação considera cada vidro e a legislação vigente.",
+        brands: [
+          brand("INSULFILM™", "insulfilm", "svg", "dark"),
+          brand("InterControl", "intercontrol", "png"),
+          brand("Across", "across", "png"),
+          brand("MPK / Nexfil", "mpk-do-brasil", "webp"),
+          brand("Solar Film", "solar-film", "png"),
+        ],
+      },
+    ],
   },
 ];
 
