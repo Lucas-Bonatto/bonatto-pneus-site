@@ -10,7 +10,7 @@ Caxias do Sul com 40 anos de experiência em pneus, rodas e serviços
 automotivos. O projeto combina uma identidade visual marcante com navegação
 direta e chamadas para orçamento pelo WhatsApp.
 
-[Acessar demonstração](https://bonatto-pneus-site.lucas-jorchuabonatto.workers.dev/)
+[Acessar o site](https://pneusbonatto.com.br/)
 
 ![Página inicial da Bonatto Pneus em uma tela desktop](docs/images/site-desktop.png)
 
@@ -24,7 +24,11 @@ performance e acessibilidade de movimento.
 ### Principais recursos
 
 - navegação por seções com indicação do conteúdo ativo;
-- catálogo visual de pneus, rodas e serviços automotivos;
+- páginas laterais por toque, arraste, teclado ou controles visuais;
+- catálogo local de marcas de pneus, rodas, suspensão, freios e lubrificantes;
+- galeria de modelos de pneus e rodas;
+- tabela de valores para balanceamento e geometria;
+- condições de pagamento para cartão e empresas com CNPJ;
 - chamadas diretas para orçamento pelo WhatsApp;
 - informações de contato, endereço, mapa e Instagram;
 - menu mobile e layout responsivo;
@@ -53,7 +57,7 @@ performance e acessibilidade de movimento.
 | Estilos | CSS responsivo, variáveis e animações próprias |
 | Tipografia | Fontes locais com `@fontsource` |
 | Ícones | React Icons |
-| Imagens | WebP otimizado |
+| Imagens | WebP, PNG e SVG locais |
 | Hospedagem | Cloudflare Workers Static Assets |
 | Qualidade | Testes com Node.js e GitHub Actions |
 | Segurança | CSP, HSTS e outros cabeçalhos HTTP |
@@ -61,6 +65,10 @@ performance e acessibilidade de movimento.
 O frontend não depende de um kit visual pronto. A composição, os componentes e
 os comportamentos responsivos foram construídos especificamente para a
 identidade da Bonatto Pneus.
+
+Os nomes, logotipos e imagens de produtos identificam as respectivas marcas.
+Modelos, medidas, estoque, taxas e condições comerciais devem ser confirmados
+diretamente com a loja.
 
 ## Segurança e qualidade
 
@@ -110,9 +118,13 @@ O Vite exibirá o endereço local no terminal, normalmente
 bonatto-pneus-site/
 ├── .github/          # CI e atualizações automatizadas
 ├── docs/images/      # imagens usadas na documentação
-├── public/           # imagens e cabeçalhos HTTP
+├── public/           # imagens locais e cabeçalhos HTTP
 ├── scripts/          # preparação do build de produção
-├── src/              # componentes e estilos da aplicação
+├── src/
+│   ├── components/   # seções e componentes visuais
+│   ├── data/         # catálogo e conteúdo comercial
+│   ├── hooks/        # comportamentos compartilhados
+│   └── styles.css    # sistema visual responsivo
 ├── tests/            # testes do pacote de produção
 ├── vite.config.mjs
 └── wrangler.jsonc    # configuração do Cloudflare Workers

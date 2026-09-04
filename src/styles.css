@@ -197,6 +197,7 @@ html[data-scrolled="true"] .site-header {
 .navigation a:hover,
 html[data-active-section="inicio"] [data-nav-section="inicio"],
 html[data-active-section="servicos"] [data-nav-section="servicos"],
+html[data-active-section="balanceamento"] [data-nav-section="balanceamento"],
 html[data-active-section="empresa"] [data-nav-section="empresa"],
 html[data-active-section="contato"] [data-nav-section="contato"] {
   color: #fff;
@@ -205,6 +206,7 @@ html[data-active-section="contato"] [data-nav-section="contato"] {
 .navigation a:hover::after,
 html[data-active-section="inicio"] [data-nav-section="inicio"]::after,
 html[data-active-section="servicos"] [data-nav-section="servicos"]::after,
+html[data-active-section="balanceamento"] [data-nav-section="balanceamento"]::after,
 html[data-active-section="empresa"] [data-nav-section="empresa"]::after,
 html[data-active-section="contato"] [data-nav-section="contato"]::after {
   transform: scaleX(1);
@@ -355,6 +357,9 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
 .hero h1,
 .services-intro h2,
 .scene-content h2,
+.showcase-title,
+.pricing h2,
+.payment-panel h3,
 .company h2,
 .contact h2 {
   margin: 0;
@@ -587,27 +592,6 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
   line-height: 1.7;
 }
 
-/* Cenas de serviço */
-
-.service-scene {
-  --scene-progress: 0;
-  position: relative;
-  min-height: 148svh;
-  background: var(--background);
-}
-
-.scene-sticky {
-  position: sticky;
-  isolation: isolate;
-  top: 0;
-  display: grid;
-  align-items: center;
-  height: 100svh;
-  padding: calc(var(--header-height) + 2rem) clamp(1.25rem, 7.5vw, 8rem) 4rem;
-  overflow: hidden;
-  border-bottom: 1px solid var(--line);
-}
-
 .scene-image,
 .scene-shade {
   position: absolute;
@@ -766,6 +750,471 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
 .scene-link:hover::after,
 .scene-link:focus-visible::after {
   transform: scaleX(1);
+}
+
+/* Jornadas laterais e catálogo */
+
+.service-journey {
+  --scene-progress: 0;
+  position: relative;
+  height: 100svh;
+  min-height: 48rem;
+  overflow: hidden;
+  background: var(--background);
+  border-bottom: 1px solid var(--line);
+}
+
+.journey-viewport {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+
+.journey-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.journey-viewport:focus-visible {
+  outline: 2px solid var(--blue-light);
+  outline-offset: -4px;
+}
+
+.journey-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+}
+
+.journey-slide {
+  position: relative;
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.service-intro-slide {
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  padding: calc(var(--header-height) + 2rem) clamp(1.25rem, 7.5vw, 8rem) 7rem;
+}
+
+.service-intro-slide .scene-image {
+  transform: scale(calc(1.08 - var(--scene-progress) * 0.045));
+}
+
+.showcase-slide {
+  display: grid;
+  align-items: center;
+  padding: calc(var(--header-height) + 1.4rem) clamp(1.25rem, 7.5vw, 8rem) 7.5rem;
+  background:
+    radial-gradient(circle at 78% 20%, rgba(18, 104, 238, 0.14), transparent 34%),
+    radial-gradient(circle at 18% 88%, rgba(231, 138, 47, 0.08), transparent 30%),
+    #080b0e;
+}
+
+.showcase-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 3.6rem 3.6rem;
+  mask-image: linear-gradient(90deg, transparent, #000 24%, #000 76%, transparent);
+}
+
+.showcase-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 7rem);
+  width: 100%;
+}
+
+.showcase-heading > p:not(.eyebrow) {
+  max-width: 30rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  line-height: 1.75;
+}
+
+.showcase-title {
+  max-width: 36rem;
+  margin: 1.25rem 0 0;
+  font-size: clamp(3.1rem, 5.2vw, 5.8rem);
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.showcase-content {
+  min-width: 0;
+}
+
+.brand-grid,
+.product-grid {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.brand-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.brand-card {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-width: 0;
+  min-height: 5.1rem;
+  overflow: hidden;
+  color: #11151a;
+  background: #f5f6f7;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 0.35rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.brand-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 3.5rem;
+  padding: 0.6rem 0.7rem 0.35rem;
+}
+
+.brand-art img {
+  width: 100%;
+  max-width: 7.8rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.brand-art > span {
+  color: #11151a;
+  font-family: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  font-size: clamp(1.15rem, 1.65vw, 1.65rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.brand-card > strong {
+  overflow: hidden;
+  padding: 0.35rem 0.55rem;
+  color: #404750;
+  background: #e8eaed;
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.product-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.product-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.product-card {
+  min-width: 0;
+  overflow: hidden;
+  color: #12161b;
+  background: #f1f2f3;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 0.4rem;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-wrap {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  padding: 0.7rem;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.product-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .product-image-wrap img {
+  transform: scale(1.045);
+}
+
+.product-card > div:last-child {
+  padding: 0.75rem 0.9rem 0.9rem;
+  border-top: 1px solid #d9dce0;
+}
+
+.product-card small,
+.product-card strong {
+  display: block;
+}
+
+.product-card small {
+  color: #67717d;
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.product-card strong {
+  margin-top: 0.22rem;
+  overflow: hidden;
+  font-size: 0.73rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.showcase-note {
+  margin: 1rem 0 0;
+  color: #aeb5be;
+  font-size: 0.68rem;
+  line-height: 1.6;
+}
+
+.journey-navigation {
+  position: absolute;
+  top: calc(var(--header-height) + 1.2rem);
+  right: clamp(1.25rem, 4vw, 4.5rem);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem;
+  color: #fff;
+  background: rgba(5, 7, 8, 0.84);
+  border: 1px solid var(--line-strong);
+  border-radius: 0.35rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+.journey-counter,
+.journey-hint {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.journey-counter {
+  padding-inline: 0.4rem;
+  color: var(--blue-light);
+}
+
+.journey-hint {
+  margin-right: 0.35rem;
+  color: var(--muted);
+}
+
+.journey-navigation button {
+  display: grid;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  padding: 0;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--line-strong);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, opacity 180ms ease;
+}
+
+.journey-navigation button:hover:not(:disabled) {
+  background: rgba(18, 104, 238, 0.3);
+  border-color: var(--blue-light);
+}
+
+.journey-navigation button:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+/* Valores e pagamentos */
+
+.pricing {
+  position: relative;
+  padding: clamp(7rem, 11vw, 11rem) clamp(1.25rem, 7.5vw, 8rem);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(18, 104, 238, 0.1), transparent 38%),
+    #070a0d;
+  border-bottom: 1px solid var(--line);
+}
+
+.pricing-heading {
+  max-width: 59rem;
+}
+
+.pricing h2 {
+  max-width: 58rem;
+  font-size: clamp(4rem, 7vw, 7.6rem);
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.pricing-heading > p:not(.eyebrow) {
+  max-width: 37rem;
+  margin: 2rem 0 0;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.price-card {
+  padding: clamp(1.3rem, 2.4vw, 2.2rem);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+}
+
+.price-card h3 {
+  min-height: 2.6rem;
+  margin: 0 0 1.6rem;
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.price-card dl,
+.price-card dd {
+  margin: 0;
+}
+
+.price-card dl {
+  display: grid;
+  gap: 1rem;
+}
+
+.price-card dl > div {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.price-card dt {
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.price-card dd {
+  color: var(--amber);
+  font-family: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  font-size: clamp(1.8rem, 2.7vw, 2.8rem);
+  font-weight: 800;
+  line-height: 0.85;
+  white-space: nowrap;
+}
+
+.pricing-note {
+  max-width: 53rem;
+  margin: 1.2rem 0 0;
+  color: #b6bdc6;
+  font-size: 0.72rem;
+  line-height: 1.65;
+}
+
+.payment-panel {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.72fr) minmax(24rem, 1.28fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  margin-top: clamp(4rem, 7vw, 7rem);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  background: #0d1218;
+  border: 1px solid rgba(72, 162, 255, 0.3);
+  border-radius: 0.4rem;
+  box-shadow: inset 0 0 50px rgba(18, 104, 238, 0.04);
+}
+
+.payment-panel h3 {
+  max-width: 27rem;
+  margin: 0;
+  font-size: clamp(2.8rem, 4.4vw, 4.8rem);
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.payment-options {
+  display: grid;
+}
+
+.payment-options article {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.payment-options article:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.payment-options svg {
+  color: var(--blue-light);
+  font-size: 1.3rem;
+}
+
+.payment-options strong {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.payment-options p {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+.payment-cta {
+  grid-column: 2;
+  justify-self: start;
+  margin-top: -1rem;
 }
 
 /* Empresa */
@@ -953,6 +1402,14 @@ html[data-active-section="contato"] [data-nav-section="contato"]::after {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-align: center;
+}
+
+.site-footer p small {
+  display: block;
+  margin-top: 0.35rem;
+  color: #6f7781;
+  font-size: 0.54rem;
+  letter-spacing: 0.04em;
 }
 
 .site-footer > a:last-child {
@@ -1155,6 +1612,15 @@ button:focus-visible {
   .scene-content {
     width: min(34rem, 48vw);
   }
+
+  .showcase-layout {
+    grid-template-columns: minmax(15rem, 0.62fr) minmax(0, 1.38fr);
+    gap: 2.5rem;
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 820px) {
@@ -1268,16 +1734,73 @@ button:focus-visible {
     margin-left: 0;
   }
 
-  .service-scene {
-    min-height: auto;
+  .section-kicker span:last-child {
+    display: none;
   }
 
-  .scene-sticky {
-    position: relative;
-    display: block;
+  .service-journey {
+    height: auto;
+    min-height: 0;
+  }
+
+  .journey-viewport,
+  .journey-track {
+    height: auto;
+  }
+
+  .journey-track {
+    align-items: stretch;
+  }
+
+  .journey-slide {
     height: auto;
     min-height: 100svh;
-    padding: 54svh 1.25rem 5rem;
+  }
+
+  .service-intro-slide {
+    display: block;
+    padding: 54svh 1.25rem 7.5rem;
+  }
+
+  .service-intro-slide .scene-image {
+    transform: none;
+  }
+
+  .showcase-slide {
+    display: block;
+    padding: 7rem 1.25rem 8rem;
+  }
+
+  .showcase-layout {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 2rem;
+  }
+
+  .showcase-title {
+    max-width: 37rem;
+    font-size: clamp(3.2rem, 12vw, 5.4rem);
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .product-grid,
+  .product-grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .journey-navigation {
+    top: auto;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    justify-content: flex-end;
+  }
+
+  .journey-hint {
+    margin-right: auto;
   }
 
   .scene-image,
@@ -1354,6 +1877,31 @@ button:focus-visible {
   .contact h2 {
     font-size: clamp(4rem, 16vw, 7rem);
     line-height: 1;
+  }
+
+  .pricing {
+    padding: 8rem 1.25rem;
+  }
+
+  .pricing h2 {
+    font-size: clamp(3.8rem, 13vw, 6.5rem);
+  }
+
+  .price-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .price-card h3 {
+    min-height: 0;
+  }
+
+  .payment-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-cta {
+    grid-column: 1;
+    margin-top: 0;
   }
 
   .site-footer {
@@ -1455,6 +2003,35 @@ button:focus-visible {
 
   .service-details li {
     font-size: 0.64rem;
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brand-card {
+    min-height: 4.9rem;
+  }
+
+  .product-card > div:last-child {
+    padding-inline: 0.65rem;
+  }
+
+  .journey-navigation {
+    gap: 0.4rem;
+  }
+
+  .journey-navigation button {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .journey-hint {
+    font-size: 0.5rem;
+  }
+
+  .price-card dl > div {
+    align-items: center;
   }
 
   .contact-list a,
