@@ -207,7 +207,7 @@ export const SERVICES = [
         eyebrow: "Óleo e lubrificação",
         title: "Proteção certa para o coração do carro.",
         description:
-          "Óleo não é tudo igual. A escolha correta ajuda a reduzir o desgaste, preservar o desempenho e prolongar a vida do motor — sempre conforme a especificação do fabricante.",
+          "Óleo não é tudo igual. A escolha correta ajuda a reduzir o desgaste, preservar o desempenho e prolongar a vida do motor, sempre seguindo a especificação do fabricante.",
         note: "Consulte a linha indicada para o seu veículo e a disponibilidade em loja.",
         brands: [
           brand("Mobil", "mobil"),

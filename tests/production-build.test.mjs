@@ -168,17 +168,46 @@ test("keeps the catalog content and product images available locally", async () 
 });
 
 test("keeps benefit-led alignment copy and accepted card brands", async () => {
-  const source = await readFile(
+  const pageSections = await readFile(
     new URL("../src/components/PageSections.jsx", import.meta.url),
     "utf8",
   );
 
-  assert.equal(source.includes("Sinta o carro firme. Faça os pneus renderem mais."), true);
-  assert.equal(source.includes("Valores claros para veículos leves"), false);
-  assert.equal(source.includes("Seu carro alinhado. Seu caminho mais seguro."), false);
+  assert.equal(
+    pageSections.includes("Sinta o carro firme. Faça os pneus renderem mais."),
+    true,
+  );
+  assert.equal(
+    pageSections.includes(
+      "Balanceamento e geometria para reduzir vibrações, melhorar a estabilidade",
+    ),
+    true,
+  );
+  assert.equal(pageSections.includes("Valores claros para veículos leves"), false);
+  assert.equal(
+    pageSections.includes("Seu carro alinhado. Seu caminho mais seguro."),
+    false,
+  );
 
   for (const brand of ["Mastercard", "Visa", "Elo", "Banrisul"]) {
-    assert.equal(source.includes(brand), true, `${brand} must stay in payment options`);
+    assert.equal(
+      pageSections.includes(brand),
+      true,
+      `${brand} must stay in payment options`,
+    );
+  }
+
+  const visibleTextSources = await Promise.all(
+    ["PageSections.jsx", "ServiceJourney.jsx", "SiteChrome.jsx"].map((file) =>
+      readFile(new URL(`../src/components/${file}`, import.meta.url), "utf8"),
+    ),
+  );
+  visibleTextSources.push(
+    await readFile(new URL("../src/data/siteContent.js", import.meta.url), "utf8"),
+  );
+
+  for (const source of visibleTextSources) {
+    assert.doesNotMatch(source, /[—–]/, "visible text must use standard punctuation");
   }
 });
 

@@ -118,9 +118,9 @@ export function PricingAndPayments() {
         <p className="eyebrow">Balanceamento e geometria</p>
         <h2>Sinta o carro firme. Faça os pneus renderem mais.</h2>
         <p>
-          Balanceamento e geometria para reduzir vibrações, corrigir a direção e
-          evitar desgaste irregular — com preços definidos para cada categoria de
-          veículo.
+          Balanceamento e geometria para reduzir vibrações, melhorar a estabilidade
+          e evitar o desgaste irregular dos pneus. Consulte os valores indicados
+          para cada categoria de veículo.
         </p>
       </div>
 

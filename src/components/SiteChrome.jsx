@@ -4,7 +4,7 @@ import { NAVIGATION, WHATSAPP_URL } from "../data/siteContent";
 
 export function Brand({ href = "#inicio" }) {
   return (
-    <a className="brand" href={href} aria-label="Bonatto Pneus — início">
+    <a className="brand" href={href} aria-label="Bonatto Pneus, início">
       <img
         className="brand-logo"
         src="/images/logo-transparent-v1.webp"
