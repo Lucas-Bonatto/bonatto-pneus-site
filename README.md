@@ -25,7 +25,7 @@ performance e acessibilidade de movimento.
 
 - navegação por seções com indicação do conteúdo ativo;
 - páginas laterais por toque, arraste, teclado ou controles visuais;
-- catálogo local de marcas de pneus, rodas, suspensão, freios e lubrificantes;
+- catálogo local de marcas de pneus, rodas, suspensão, freios, lubrificantes e elétrica automotiva;
 - galeria de modelos de pneus e rodas;
 - tabela de valores para balanceamento e geometria;
 - condições de pagamento para cartão e empresas com CNPJ;

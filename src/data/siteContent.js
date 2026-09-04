@@ -228,10 +228,85 @@ export const SERVICES = [
     title: "Tecnologia que liga, protege e conecta.",
     description:
       "Instalação, revisão e integração de acessórios elétricos com organização e acabamento profissional.",
-    details: ["Alarmes", "Interfaces", "Lâmpadas", "Baterias", "Antifurto", "Rádio", "Alto-falantes"],
+    details: [
+      "Alarmes e antifurto",
+      "Interfaces",
+      "Baterias",
+      "Iluminação",
+      "Som e multimídia",
+    ],
     image: "/images/sections/electrical.webp",
     alt: "Componentes de elétrica automotiva organizados sobre bancada escura",
     align: "right",
+    slides: [
+      {
+        id: "eletrica-protecao",
+        type: "brands",
+        eyebrow: "Alarmes e proteção",
+        title: "Mais controle. Menos preocupação.",
+        description:
+          "Alarmes, bloqueadores, sensores e soluções antifurto pensados para reforçar a proteção do veículo e trazer mais tranquilidade à rotina.",
+        note:
+          "Recursos e compatibilidade variam conforme o veículo. Consulte a solução indicada e a disponibilidade em loja.",
+        brands: [
+          brand("Pósitron", "positron", "png"),
+          brand("Taramps", "taramps", "png"),
+          brand("FKS", "fks", "png"),
+          brand("Olimpus", "olimpus", "png"),
+        ],
+      },
+      {
+        id: "eletrica-interfaces",
+        type: "brands",
+        eyebrow: "Interfaces e automação",
+        title: "Seu carro faz mais, sem perder a essência.",
+        description:
+          "Módulos para vidros, travas, retrovisores, volante, câmeras e multimídia que ampliam conforto e conectividade com integração limpa.",
+        note:
+          "Cada interface exige aplicação correta. Consulte as funções compatíveis com o modelo e o sistema original do seu veículo.",
+        brands: [
+          brand("Tury", "tury", "png"),
+          brand("Tragial", "tragial", "png"),
+          brand("Faaftech", "faaftech", "png"),
+          brand("Soft Automotiva", "soft-automotiva"),
+        ],
+      },
+      {
+        id: "eletrica-energia-iluminacao",
+        type: "brands",
+        eyebrow: "Baterias e iluminação",
+        title: "Energia para partir. Visibilidade para chegar.",
+        description:
+          "Baterias dimensionadas para a demanda elétrica do veículo e iluminação escolhida pelo encaixe, potência e aplicação corretos.",
+        note:
+          "Consulte amperagem, tecnologia, modelo de lâmpada, compatibilidade e disponibilidade antes da instalação.",
+        brands: [
+          brand("Moura", "moura"),
+          brand("Heliar", "heliar", "png"),
+          brand("Tudor", "tudor", "png"),
+          brand("Philips", "philips", "png"),
+          brand("OSRAM", "osram", "png"),
+          brand("Shocklight", "shocklight", "png"),
+        ],
+      },
+      {
+        id: "eletrica-som-conectividade",
+        type: "brands",
+        eyebrow: "Som e conectividade",
+        title: "Sua trilha. Seu caminho. Do seu jeito.",
+        description:
+          "Centrais multimídia, alto-falantes, amplificadores e integrações para unir qualidade sonora, comandos e conexão no dia a dia.",
+        note:
+          "Projeto, potência e instalação são definidos conforme espaço, sistema original e objetivo de cada cliente.",
+        brands: [
+          brand("Pioneer", "pioneer", "png"),
+          brand("JBL", "jbl", "png"),
+          brand("Taramps", "taramps", "png"),
+          brand("Stetsom", "stetsom", "png"),
+          brand("Faaftech", "faaftech", "png"),
+        ],
+      },
+    ],
   },
   {
     id: "peliculas",

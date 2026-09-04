@@ -21,6 +21,26 @@ const CATALOG_ASSETS = [
   "wheel-zunky-zk940.png",
 ];
 
+const ELECTRICAL_BRAND_ASSETS = [
+  "positron.png",
+  "taramps.png",
+  "fks.png",
+  "olimpus.png",
+  "tury.png",
+  "tragial.png",
+  "faaftech.png",
+  "soft-automotiva.svg",
+  "moura.svg",
+  "heliar.png",
+  "tudor.png",
+  "philips.png",
+  "osram.png",
+  "shocklight.png",
+  "pioneer.png",
+  "jbl.png",
+  "stetsom.png",
+];
+
 const REQUIRED_CATALOG_TEXT = [
   "Dunlop",
   "Pirelli",
@@ -47,6 +67,24 @@ const REQUIRED_CATALOG_TEXT = [
   "Volcano",
   "Olimpo",
   "Rodas originais",
+  "Mais controle. Menos preocupação.",
+  "Pósitron",
+  "FKS",
+  "Seu carro faz mais, sem perder a essência.",
+  "Tury",
+  "Tragial",
+  "Soft Automotiva",
+  "Energia para partir. Visibilidade para chegar.",
+  "Moura",
+  "Heliar",
+  "Tudor",
+  "Philips",
+  "OSRAM",
+  "Shocklight",
+  "Sua trilha. Seu caminho. Do seu jeito.",
+  "Pioneer",
+  "JBL",
+  "Stetsom",
   "R$ 60,00",
   "R$ 100,00",
 ];
@@ -91,6 +129,12 @@ test("keeps the catalog content and product images available locally", async () 
   await Promise.all(
     CATALOG_ASSETS.map((asset) =>
       access(new URL(`../public/images/products/${asset}`, import.meta.url)),
+    ),
+  );
+
+  await Promise.all(
+    ELECTRICAL_BRAND_ASSETS.map((asset) =>
+      access(new URL(`../public/images/brands/${asset}`, import.meta.url)),
     ),
   );
 });
